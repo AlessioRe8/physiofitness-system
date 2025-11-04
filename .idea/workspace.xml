@@ -4,17 +4,81 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="added .gitignore">
+      <change afterPath="$PROJECT_DIR$/backend/apps/users/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/apps/users/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/appointments/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/appointments/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/appointments/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/appointments/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/appointments/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/appointments/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/appointments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/appointments/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/appointments/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/appointments/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/appointments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/appointments/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/billing/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/appointments/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/billing/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/billing/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/billing/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/appointments/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/billing/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/billing/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/billing/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clinic_backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clinic_backend/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/core/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/core/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/core/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/core/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/core/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/core/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/core/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/core/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/inventory/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/core/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/inventory/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/inventory/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/inventory/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/core/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/inventory/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/inventory/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/inventory/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/patients/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/patients/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/patients/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/patients/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/patients/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/patients/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/patients/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AlessioRe8&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AlessioRe8/physiofitness-system.git&quot;,
+    &quot;accountId&quot;: &quot;7c6cb0fc-c07c-4e39-b9a2-ec52825d8cf4&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -26,13 +90,20 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.manage.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/AR8/Desktop/Projects/csd-project/physiofitness-system"
+    "last_opened_file_path": "C:/Users/AR8/Desktop/Projects/csd-project/physiofitness-system",
+    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\AR8\Desktop\Projects\csd-project\physiofitness-system\backend\apps" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -48,6 +119,19 @@
       <option name="presentableId" value="Default" />
       <updated>1761942301160</updated>
     </task>
+    <task id="LOCAL-00001" summary="added .gitignore">
+      <option name="closed" value="true" />
+      <created>1761943827901</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1761943827901</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="added .gitignore" />
   </component>
 </project>
