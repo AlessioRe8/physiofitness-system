@@ -1,9 +1,12 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from .models import StaffProfile
+from .models import User, StaffProfile
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'is_staff', 'is_superuser', 'date_joined')
+    search_fields = ('username', 'email')
 
 @admin.register(StaffProfile)
 class StaffProfileAdmin(admin.ModelAdmin):
-    list_display = ("user", "role", "phone")
-    search_fields = ("user__username", "role")
-    list_filter = ("role",)
+    list_display = ('user', 'role', 'phone')
+    search_fields = ('user__username', 'role')
