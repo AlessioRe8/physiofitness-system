@@ -1,22 +1,30 @@
-from rest_framework.permissions import BasePermission, SAFE_METHODS
-#MAYBE MOVE THIS TO apps/core
+from rest_framework.permissions import BasePermission
 
-class IsStaff(BasePermission):
+class IsAdminUser(BasePermission):
     def has_permission(self, request, view):
-        return (
-            request.user.is_authenticated
-            and request.user.role == "Staff"
-        )
+        return bool(request.user and request.user.is_authenticated and request.user.role == 'ADMIN')
 
-class IsPhysiotherapist(BasePermission):
+class IsPhysiotherapistUser(BasePermission):
     def has_permission(self, request, view):
-        return request.user.staff_role == "Physiotherapist"
+        return bool(request.user and request.user.is_authenticated and request.user.role == 'PHYSIOTHERAPIST')
 
-class IsStaffOrReadOnly(BasePermission):
+class IsReceptionistUser(BasePermission):
     def has_permission(self, request, view):
-        if request.method in SAFE_METHODS:
+        return bool(request.user and request.user.is_authenticated and request.user.role == 'RECEPTIONIST')
+
+class IsAdminOrReceptionist(BasePermission):
+    def has_permission(self, request, view):
+        return bool(request.user and request.user.is_authenticated and
+                    (request.user.role == 'ADMIN' or request.user.role == 'RECEPTIONIST'))
+
+class IsOwnerOrAdmin(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        # Admin can see everything
+        if request.user.role == 'ADMIN':
             return True
-        return (
-            request.user.is_authenticated
-            and request.user.role == "Staff"
-        )
+        if hasattr(obj, 'user'):
+            return obj.user == request.user
+        if hasattr(obj, 'patient') and hasattr(obj.patient, 'user'):
+            return obj.patient.user == request.user
+
+        return False

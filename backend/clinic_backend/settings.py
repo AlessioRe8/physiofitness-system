@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
+
     'apps.core',
     'apps.patients',
-    'apps.appointments',
+    'apps.scheduling',
     'apps.inventory',
     'apps.billing',
     'apps.users',
@@ -54,9 +56,6 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
     ),
 }
 

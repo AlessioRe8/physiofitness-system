@@ -1,23 +1,15 @@
+import uuid
 from django.db import models
-from django.conf import settings
 
 
-class AuditLog(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
-    action = models.CharField(max_length=200)
-    entity = models.CharField(max_length=100)
-    entity_id = models.IntegerField()
-    timestamp = models.DateTimeField(auto_now_add=True)
+class TimeStampedModel(models.Model):
+    """
+    Abstract base class model that provides self-updating
+    'created' and 'modified' fields.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return f"{self.timestamp} - {self.user} - {self.action}"
-
-
-class Clinic(models.Model):
-    name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    phone = models.CharField(max_length=50, blank=True)
-    email = models.EmailField(blank=True)
-
-    def __str__(self):
-        return self.name
+    class Meta:
+        abstract = True
