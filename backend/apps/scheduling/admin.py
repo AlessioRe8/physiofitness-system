@@ -35,7 +35,7 @@ class AppointmentAdmin(admin.ModelAdmin):
 
     list_display = ('start_time', 'get_patient_name', 'get_therapist_name', 'service', 'status')
     list_filter = ('status', 'start_time', 'therapist')
-    search_fields = ('patient__last_name', 'patient__fiscal_code')
+    search_fields = ('patient__last_name', 'patient__first_name', 'patient__fiscal_code')
     date_hierarchy = 'start_time'
 
     @admin.display(description='Therapist')

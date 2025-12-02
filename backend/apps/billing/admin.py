@@ -20,8 +20,8 @@ class InvoiceAdmin(admin.ModelAdmin):
     list_filter = ('status', 'issue_date')
     search_fields = ('patient__last_name', 'patient__fiscal_code')
     readonly_fields = ('total_amount',)
-
     inlines = [InvoiceItemInline, PaymentInline]
+    autocomplete_fields = ['patient', 'appointment']
 
     @admin.display(description='Patient')
     def patient_name(self, obj):

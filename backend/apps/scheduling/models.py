@@ -1,7 +1,8 @@
 from django.db import models
-from django.conf import settings  # To refer to the User model
+from django.conf import settings
 from apps.core.models import TimeStampedModel
 from apps.patients.models import Patient
+from django.core.exceptions import ValidationError
 
 from clinic_backend.settings import AUTH_USER_MODEL
 
@@ -68,6 +69,19 @@ class Appointment(TimeStampedModel):
 
     def __str__(self):
         return f"{self.patient} - {self.start_time.strftime('%Y-%m-%d %H:%M')}"
+
+    def clean(self):
+        super().clean()
+
+        if self.start_time and self.end_time:
+            if self.start_time >= self.end_time:
+                raise ValidationError({
+                    'end_time': "End time must be after the start time."
+                })
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['-start_time']

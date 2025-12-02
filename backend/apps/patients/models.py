@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from apps.core.models import TimeStampedModel
 
 
@@ -7,6 +8,15 @@ class Patient(TimeStampedModel):
     Represents a patient in the clinic.
     Acts as a simple Electronic Health Record (EHR).
     """
+
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='patient_profile'
+    )
+
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -19,7 +29,7 @@ class Patient(TimeStampedModel):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     fiscal_code = models.CharField(max_length=16, unique=True, help_text="Tax ID")
 
-    email = models.EmailField(blank=True, null=True)
+    email = models.EmailField(unique=True, blank=True, null=True)
     phone_number = models.CharField(max_length=20)
     address = models.TextField(blank=True)
 
