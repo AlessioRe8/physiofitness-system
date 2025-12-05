@@ -67,6 +67,8 @@ class Appointment(TimeStampedModel):
 
     notes = models.TextField(blank=True, help_text="Internal notes for the therapist")
 
+    reminder_sent = models.BooleanField(default=False, help_text="Has the 24h reminder been sent?")
+
     def __str__(self):
         return f"{self.patient} - {self.start_time.strftime('%Y-%m-%d %H:%M')}"
 
