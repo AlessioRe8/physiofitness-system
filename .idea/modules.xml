@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/csd-project.iml" filepath="$PROJECT_DIR$/.idea/csd-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tbdm-project/iot-etl/.idea/iot-etl.iml" filepath="$PROJECT_DIR$/../../tbdm-project/iot-etl/.idea/iot-etl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tbdm-project/.idea/tbdm-project.iml" filepath="$PROJECT_DIR$/../../tbdm-project/.idea/tbdm-project.iml" />
     </modules>
   </component>
 </project>

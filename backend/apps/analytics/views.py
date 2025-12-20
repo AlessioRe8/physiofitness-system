@@ -1,45 +1,56 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions
-from django.db.models import Sum, Count
+from django.db.models import Sum
 from django.utils import timezone
-from datetime import timedelta
-
-from .ai import NoShowPredictor, DemandForecaster
 
 from apps.scheduling.models import Appointment
 from apps.billing.models import Invoice, Payment
 from apps.patients.models import Patient
 
+from .ai import NoShowPredictor, DemandForecaster
+
 
 class DashboardStatsView(APIView):
-    permission_classes = [permissions.IsAdminUser]
+    """
+    Returns statistics based on the User's Role.
+    - Admin: Sees Revenue, All Patients, All Appointments.
+    - Physio: Sees My Appointments, My Patients, No Revenue.
+    """
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
+        user = request.user
         today = timezone.now().date()
         start_of_month = today.replace(day=1)
 
-        total_patients = Patient.objects.filter(is_active=True).count()
+        data = {
+            "total_patients": 0,
+            "today_appointments": 0,
+            "monthly_revenue": 0,
+            "pending_invoices": 0,
+            "role": user.role
+        }
 
-        today_appointments = Appointment.objects.filter(
-            start_time__date=today
-        ).count()
+        if user.role == 'ADMIN' or user.is_superuser:
+            data["total_patients"] = Patient.objects.filter(is_active=True).count()
+            data["today_appointments"] = Appointment.objects.filter(start_time__date=today).count()
 
-        monthly_revenue = Payment.objects.filter(
-            payment_date__gte=start_of_month
-        ).aggregate(Sum('amount'))['amount__sum'] or 0.00
+            revenue = Payment.objects.filter(payment_date__gte=start_of_month).aggregate(Sum('amount'))['amount__sum']
+            data["monthly_revenue"] = revenue if revenue else 0.00
 
-        pending_invoices = Invoice.objects.filter(
-            status__in=['DRAFT', 'ISSUED']
-        ).count()
+            data["pending_invoices"] = Invoice.objects.filter(status__in=['DRAFT', 'ISSUED']).count()
 
-        return Response({
-            "total_patients": total_patients,
-            "today_appointments": today_appointments,
-            "monthly_revenue": monthly_revenue,
-            "pending_invoices": pending_invoices,
-            "generated_at": timezone.now()
-        })
+        elif user.role == 'PHYSIO':
+            data["total_patients"] = Patient.objects.filter(is_active=True).count()
+            data["today_appointments"] = Appointment.objects.filter(
+                start_time__date=today,
+                therapist=user
+            ).count()
+            data["monthly_revenue"] = 0
+            data["pending_invoices"] = 0
+
+        return Response(data)
 
 
 class PatientRiskView(APIView):
@@ -50,7 +61,11 @@ class PatientRiskView(APIView):
         result = predictor.predict_risk(patient_id)
         return Response(result)
 
+
 class DemandForecastView(APIView):
+    """
+    Returns predicted appointment counts for the next 7 days.
+    """
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
@@ -60,7 +75,7 @@ class DemandForecastView(APIView):
 
         response_data = {
             "clinic_forecast": general_data,
-            "my_forecast": None  # Default to null
+            "my_forecast": None
         }
 
         if request.user.role == 'PHYSIO':
@@ -70,12 +85,7 @@ class DemandForecastView(APIView):
         return Response(response_data)
 
 
-
 class ChatbotView(APIView):
-    """
-    A simple rule-based chatbot backend.
-    React sends a message, it returns a response.
-    """
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
@@ -83,17 +93,13 @@ class ChatbotView(APIView):
 
         if 'hello' in user_message or 'hi' in user_message:
             response = "Hello! I am the PhysioFitness Assistant. How can I help you today?"
-
         elif 'open' in user_message or 'hour' in user_message:
-            response = "We are open Monday to Friday, 08:00 to 20:00."
-
+            response = "We are open Monday to Friday, 09:00 to 18:00."
         elif 'book' in user_message or 'appointment' in user_message:
             response = "You can book an appointment by logging in and visiting the Scheduling page."
-
         elif 'price' in user_message or 'cost' in user_message:
-            response = "Our initial consultation is €40. Massages start at €30."
-
+            response = "Our initial consultation is €50. Massages start at €30."
         else:
-            response = "I'm sorry, I didn't understand that. Please call our reception at 0123-4567890."
+            response = "I'm sorry, I didn't understand that. Please call our reception at 555-0123."
 
         return Response({"response": response})

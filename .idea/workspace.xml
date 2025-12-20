@@ -4,15 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="added API endpoints, added Celery notifications">
-      <change afterPath="$PROJECT_DIR$/backend/apps/analytics/ai.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/apps/analytics/urls.py" afterDir="false" />
+    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="changed etl_script.py, added ETL and synchronization logic and deletion policies">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/ChatWidget.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Modal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/AnalyticsAI.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Billing.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Calendar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Inventory.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/PatientList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csd-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csd-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/scheduling/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/scheduling/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/scheduling/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/scheduling/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/clinic_backend/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clinic_backend/celery.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/analytics/ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/analytics/ai.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/analytics/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/analytics/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/analytics/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/analytics/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/patients/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/celerybeat-schedule" beforeDir="false" afterPath="$PROJECT_DIR$/backend/celerybeat-schedule" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/clinic_backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clinic_backend/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/clinic_backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clinic_backend/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tbdm-project/iot-etl/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +137,31 @@
       <option name="project" value="LOCAL" />
       <updated>1764689403695</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added Swagger API, fixed Celery implementation, added AI prediction and primitive chatbot">
+      <option name="closed" value="true" />
+      <created>1764955104730</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1764955104730</updated>
+    </task>
+    <task id="LOCAL-00007" summary="changed development secret key">
+      <option name="closed" value="true" />
+      <created>1764955218391</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1764955218391</updated>
+    </task>
+    <task id="LOCAL-00008" summary="changed etl_script.py, added ETL and synchronization logic and deletion policies">
+      <option name="closed" value="true" />
+      <created>1765998894234</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1765998894234</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -145,6 +181,9 @@
     <MESSAGE value="code revisioning, added JWT Auth and fixed DB migrations" />
     <MESSAGE value="fixed models, reorganized repo." />
     <MESSAGE value="added API endpoints, added Celery notifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="added API endpoints, added Celery notifications" />
+    <MESSAGE value="added Swagger API, fixed Celery implementation, added AI prediction and primitive chatbot" />
+    <MESSAGE value="changed development secret key" />
+    <MESSAGE value="changed etl_script.py, added ETL and synchronization logic and deletion policies" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed etl_script.py, added ETL and synchronization logic and deletion policies" />
   </component>
 </project>
