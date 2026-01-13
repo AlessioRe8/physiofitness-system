@@ -4,35 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="fixed protection issues, refactored repo">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/logo-unicam.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ServiceList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/analytics/ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/analytics/ai.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/analytics/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/analytics/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/billing/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/billing/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/inventory/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/inventory/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/patients/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/patients/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/patients/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/scheduling/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/scheduling/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/clinic_backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clinic_backend/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/context/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/AuthContext.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AnalyticsAI.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AnalyticsAI.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Billing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Billing.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Calendar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Inventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Inventory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/PatientList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/PatientList.jsx" afterDir="false" />
+    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="frontend initial commit">
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/etl_test.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/test_connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/test_auth.py" afterDir="false" />
@@ -217,7 +189,23 @@
       <option name="project" value="LOCAL" />
       <updated>1766492755383</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="frontend initial commit">
+      <option name="closed" value="true" />
+      <created>1768292831680</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1768292831680</updated>
+    </task>
+    <task id="LOCAL-00015" summary="frontend initial commit">
+      <option name="closed" value="true" />
+      <created>1768293123604</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1768293123604</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -225,7 +213,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -245,6 +245,7 @@
     <MESSAGE value="added util" />
     <MESSAGE value="fixed README.md" />
     <MESSAGE value="fixed protection issues, refactored repo" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed protection issues, refactored repo" />
+    <MESSAGE value="frontend initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="frontend initial commit" />
   </component>
 </project>
