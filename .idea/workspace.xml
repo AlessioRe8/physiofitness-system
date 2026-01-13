@@ -4,27 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="changed etl_script.py, added ETL and synchronization logic and deletion policies">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ChatWidget.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Modal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/AnalyticsAI.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Billing.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Calendar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Inventory.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/PatientList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csd-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csd-project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="fixed protection issues, refactored repo">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/logo-unicam.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ServiceList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/apps/analytics/ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/analytics/ai.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/apps/analytics/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/analytics/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/analytics/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/analytics/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/billing/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/billing/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/billing/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/inventory/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/inventory/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/inventory/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/patients/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/apps/patients/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/celerybeat-schedule" beforeDir="false" afterPath="$PROJECT_DIR$/backend/celerybeat-schedule" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/clinic_backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clinic_backend/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tbdm-project/iot-etl/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/patients/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/patients/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/scheduling/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/scheduling/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/apps/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/clinic_backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/clinic_backend/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/AuthContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AnalyticsAI.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/AnalyticsAI.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Billing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Billing.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Calendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Inventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Inventory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/PatientList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/PatientList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/etl_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/test_connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/test_auth.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,13 +83,18 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/AR8/Desktop/Projects/csd-project/physiofitness-system&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/AR8/Desktop/Projects/csd-project/physiofitness-system/docs&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\AR8\Desktop\Projects\csd-project\physiofitness-system\docs" />
+      <recent name="C:\Users\AR8\Desktop\Projects\tbdm-project\iot-etl\util" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\AR8\Desktop\Projects\tbdm-project\iot-etl\tests" />
       <recent name="C:\Users\AR8\Desktop\Projects\csd-project\physiofitness-system\backend\apps" />
     </key>
   </component>
@@ -161,7 +177,47 @@
       <option name="project" value="LOCAL" />
       <updated>1765998894234</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="initial sketch of the frontend">
+      <option name="closed" value="true" />
+      <created>1766267295099</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1766267295099</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added backend features, enhanced frontend UI, written README.md, added requirements.txt,">
+      <option name="closed" value="true" />
+      <created>1766492030138</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1766492030138</updated>
+    </task>
+    <task id="LOCAL-00011" summary="added util">
+      <option name="closed" value="true" />
+      <created>1766492102508</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1766492102508</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fixed README.md">
+      <option name="closed" value="true" />
+      <created>1766492178700</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1766492178700</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fixed protection issues, refactored repo">
+      <option name="closed" value="true" />
+      <created>1766492755383</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1766492755383</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,6 +240,11 @@
     <MESSAGE value="added Swagger API, fixed Celery implementation, added AI prediction and primitive chatbot" />
     <MESSAGE value="changed development secret key" />
     <MESSAGE value="changed etl_script.py, added ETL and synchronization logic and deletion policies" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed etl_script.py, added ETL and synchronization logic and deletion policies" />
+    <MESSAGE value="initial sketch of the frontend" />
+    <MESSAGE value="added backend features, enhanced frontend UI, written README.md, added requirements.txt," />
+    <MESSAGE value="added util" />
+    <MESSAGE value="fixed README.md" />
+    <MESSAGE value="fixed protection issues, refactored repo" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed protection issues, refactored repo" />
   </component>
 </project>

@@ -13,6 +13,9 @@ class InventoryItem(TimeStampedModel):
     description = models.TextField(blank=True)
 
     # Stock Management
+    supplier = models.CharField(max_length=200, blank=True, null=True)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
     current_stock = models.IntegerField(default=0)
     reorder_threshold = models.IntegerField(
         default=5,

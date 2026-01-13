@@ -8,7 +8,6 @@ from apps.scheduling.models import Appointment, Service
 
 class Invoice(TimeStampedModel):
     class Status(models.TextChoices):
-        DRAFT = 'DRAFT', 'Draft'
         ISSUED = 'ISSUED', 'Issued (Unpaid)'
         PAID = 'PAID', 'Paid'
         PARTIAL = 'PARTIAL', 'Partially Paid'
@@ -23,7 +22,7 @@ class Invoice(TimeStampedModel):
         related_name='invoices',
         help_text="Link this invoice to a specific appointment"
     )
-    status = models.CharField(max_length=20, choices=Status.choices, default=Status.DRAFT)
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.ISSUED)
     issue_date = models.DateField(null=True, blank=True)
     due_date = models.DateField(null=True, blank=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)

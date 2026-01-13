@@ -29,7 +29,7 @@ const AnalyticsAI = () => {
                 <h2 className="text-xl font-bold text-gray-700 mb-4">Demand Forecast (Next 7 Days)</h2>
                 <div className="h-96 w-full"> {/* Increased height slightly since it's the only item now */}
                     {loading ? <p className="text-center py-10 text-gray-500">Loading AI Model...</p> : (
-                        <ResponsiveContainer width="100%" height="100%">
+                        <ResponsiveContainer height={400} width="100%">
                             <LineChart data={forecastData}>
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis dataKey="weekday" />

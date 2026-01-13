@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, Calendar, Users, Package, LogOut, BrainCircuit, Receipt} from "lucide-react";
+import { LayoutDashboard, Calendar, Users, Package, LogOut, BrainCircuit, Receipt, Briefcase } from "lucide-react";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
@@ -29,9 +29,10 @@ const Sidebar = () => {
                     <NavItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" />
                     <NavItem to="/calendar" icon={Calendar} label="Scheduling" />
                     <NavItem to="/patients" icon={Users} label="Patients" />
+                    <NavItem to="/services" icon={Briefcase} label="Services" />
                     <NavItem to="/inventory" icon={Package} label="Inventory" />
                     <NavItem to="/billing" icon={Receipt} label="Billing" />
-                    <NavItem to="/analytics" icon={BrainCircuit} label="AI & Analytics" />
+                    <NavItem to="/analytics" icon={BrainCircuit} label="Analytics" />
                 </nav>
             </div>
             <div className="p-4">

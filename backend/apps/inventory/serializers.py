@@ -6,8 +6,9 @@ class InventoryItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = InventoryItem
         fields = ['id', 'name', 'description', 'current_stock',
-                  'reorder_threshold', 'unit', 'is_active', 'updated_at']
-        read_only_fields = ['current_stock', 'updated_at']
+                  'reorder_threshold', 'unit', 'is_active', 'updated_at',
+                  'unit_price', 'supplier']
+        read_only_fields = ['updated_at']
 
 class InventoryTransactionSerializer(serializers.ModelSerializer):
     created_by_detail = UserSerializer(source='created_by', read_only=True)

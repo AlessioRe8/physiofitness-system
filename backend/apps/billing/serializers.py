@@ -35,7 +35,7 @@ class InvoiceSerializer(serializers.ModelSerializer):
             'total_amount', 'notes',
             'items', 'payments', 'created_at'
         ]
-        read_only_fields = ['total_amount', 'created_at', 'payments']
+        read_only_fields = ['created_at', 'payments']
 
     def validate(self, data):
         if data.get('due_date') and data.get('issue_date'):

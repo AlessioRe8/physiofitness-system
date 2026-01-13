@@ -11,6 +11,7 @@ import Billing from "./pages/Billing";
 import AnalyticsAI from "./pages/AnalyticsAI";
 import ChatWidget from "./components/ChatWidget";
 import Home from "./pages/Home";
+import ServiceList from "./pages/ServiceList";
 
 const Layout = () => (
     <div className="flex">
@@ -35,6 +36,7 @@ function App() {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/calendar" element={<Calendar />} />
                   <Route path="/patients" element= {<PatientList />} />
+                  <Route path="/services" element={<ServiceList />} />
                   <Route path="/inventory" element={<Inventory />} />
                   <Route path="/billing" element={<Billing />} />
                   <Route path="/analytics" element={<AnalyticsAI />} />

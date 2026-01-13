@@ -18,14 +18,16 @@ class AppointmentPermissionTests(APITestCase):
         self.physio_user = User.objects.create_user(
             email='physio@test.com', password='password123', role='PHYSIO'
         )
-        self.patient_user = User.objects.create_user(
-            email='patient@test.com', password='password123', role='PATIENT'
+        self.other_physio = User.objects.create_user(
+            email='other@test.com', password='password123', role='PHYSIO'
         )
 
         self.patient_profile = Patient.objects.create(
-            user=self.patient_user,
-            first_name="John", last_name="Doe",
-            date_of_birth="1990-01-01", gender="M", fiscal_code="TEST123456"
+            first_name="John",
+            last_name="Doe",
+            date_of_birth="1990-01-01",
+            gender="M",
+            tax_id="TEST123456"
         )
 
         self.room = Room.objects.create(name="Room A")
@@ -36,21 +38,22 @@ class AppointmentPermissionTests(APITestCase):
             therapist=self.physio_user,
             service=self.service, room=self.room,
             start_time=timezone.now(),
-            end_time=timezone.now() + timedelta(minutes=30)
+            end_time=timezone.now() + timedelta(minutes=30),
+            status="CONFIRMED"
         )
 
         self.appt_other = Appointment.objects.create(
             patient=self.patient_profile,
-            therapist=None,  # Unassigned
+            therapist=self.other_physio,
             service=self.service, room=self.room,
             start_time=timezone.now() + timedelta(hours=1),
-            end_time=timezone.now() + timedelta(hours=1, minutes=30)
+            end_time=timezone.now() + timedelta(hours=1, minutes=30),
+            status="CONFIRMED"
         )
 
-        self.list_url = reverse('appointment-list')
+        self.list_url = '/api/scheduling/appointments/'
 
     def test_admin_can_see_all_appointments(self):
-        """Admin should see BOTH appointments."""
         self.client.force_authenticate(user=self.admin_user)
         response = self.client.get(self.list_url)
 
