@@ -114,7 +114,7 @@ that will take care
 of sending confirmation emails and reminders for the appointments.
 Then, the system will need Celery Beat 
 ```bash
-celery -A clinic backend beat -l info)
+celery -A clinic backend beat -l info
  ```
 which will silently trigger the tasks if they satifsy the requirements.
 
