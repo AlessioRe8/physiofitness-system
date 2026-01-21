@@ -215,9 +215,13 @@ const Calendar = () => {
                         <select required className="border p-2 rounded w-full bg-white"
                             value={formData.patient_id}
                             onChange={e => setFormData({...formData, patient_id: e.target.value})}>
-                            <option value="">Choose Patient</option>
-                            {patients.map(p => (
-                                <option key={p.id} value={p.id}>{p.first_name} {p.last_name}</option>
+                            <option value="">Select Patient</option>
+                            {patients
+                                .filter(p => p.is_active)
+                                .map((p) => (
+                                    <option key={p.id} value={p.id}>
+                                        {p.first_name} {p.last_name} ({p.date_of_birth || "No DOB"})
+                                    </option>
                             ))}
                         </select>
                     </div>

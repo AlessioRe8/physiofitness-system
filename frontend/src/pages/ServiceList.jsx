@@ -67,7 +67,10 @@ const ServiceList = () => {
         try {
             await api.delete(`scheduling/services/${id}/`);
             fetchServices();
-        } catch (error) { console.error(error); }
+        } catch (error) {
+            console.error(error);
+            alert("Error deleting service. Check that isn't related to any appointment.")
+            }
     };
 
     return (

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../api/axios";
-import { Search, Plus, User, Save, Phone, Mail, Pencil } from "lucide-react";
+import { Search, Plus, User, Save, Phone, Mail, Pencil, Power, CheckCircle, XCircle } from "lucide-react";
 import Modal from "../components/Modal";
 
 const PatientList = () => {
@@ -11,8 +11,8 @@ const PatientList = () => {
 
     const [formData, setFormData] = useState({
         first_name: "", last_name: "", email: "",
-        phone_number: "", fiscal_code: "",
-        date_of_birth: "", gender: "O"
+        phone_number: "", tax_id: "",
+        date_of_birth: "", gender: "O", is_active: true
     });
 
     useEffect(() => {
@@ -30,8 +30,8 @@ const PatientList = () => {
         setSelectedPatientId(null);
         setFormData({
             first_name: "", last_name: "", email: "",
-            phone_number: "", fiscal_code: "",
-            date_of_birth: "", gender: "O"
+            phone_number: "", tax_id: "",
+            date_of_birth: "", gender: "O", is_active: true
         });
         setIsModalOpen(true);
     };
@@ -43,11 +43,29 @@ const PatientList = () => {
             last_name: patient.last_name,
             email: patient.email || "",
             phone_number: patient.phone_number || "",
-            fiscal_code: patient.fiscal_code,
+            tax_id: patient.tax_id,
             date_of_birth: patient.date_of_birth || "",
-            gender: patient.gender || "O"
+            gender: patient.gender || "O",
+            is_active: patient.is_active
         });
         setIsModalOpen(true);
+    };
+
+    const handleToggleStatus = async (patient) => {
+        const newStatus = !patient.is_active;
+
+        if (!window.confirm(`Are you sure you want to change active status to patient ${patient.first_name} ${patient.last_name}?`)) return;
+
+        try {
+            await api.patch(`patients/${patient.id}/`, { is_active: newStatus });
+
+            setPatients(patients.map(p =>
+                p.id === patient.id ? { ...p, is_active: newStatus } : p
+            ));
+        } catch (error) {
+            console.error("Error updating status:", error);
+            alert("Failed to update status.");
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -63,16 +81,31 @@ const PatientList = () => {
             alert("Patient record saved!");
         } catch (error) {
             console.error("Save Error:", error.response?.data);
-            alert("Error saving patient.");
+            let errorMessage = "Error saving patient.";
+            if (error.response && error.response.data) {
+                const data = error.response.data;
+                if (data.non_field_errors) errorMessage = data.non_field_errors[0];
+                else if (data.email) errorMessage = `Email error: ${data.email[0]}`;
+                else if (data.detail) errorMessage = data.detail;
+            }
+            alert(errorMessage);
         }
     };
 
-    const filteredPatients = patients.filter(patient => {
-        const fullName = `${patient.first_name} ${patient.last_name}`.toLowerCase();
-        const code = (patient.fiscal_code || "").toLowerCase();
-        const search = searchTerm.toLowerCase();
-        return fullName.includes(search) || code.includes(search);
-    });
+    const filteredPatients = patients
+        .filter(patient => {
+            const fullName = `${patient.first_name} ${patient.last_name}`.toLowerCase();
+            const code = (patient.tax_id || "").toLowerCase();
+            const search = searchTerm.toLowerCase();
+            return fullName.includes(search) || code.includes(search);
+        })
+        .sort((a, b) => {
+            if (a.is_active === b.is_active) {
+                return a.last_name.localeCompare(b.last_name);
+            }
+            return a.is_active ? -1 : 1;
+        });
+    // --------------------------------
 
     return (
         <div className="p-8 min-h-screen bg-gray-50">
@@ -100,6 +133,7 @@ const PatientList = () => {
                     <thead className="bg-gray-100 text-gray-600 uppercase text-xs font-bold">
                         <tr>
                             <th className="p-4">Name</th>
+                            <th className="p-4">Status</th>
                             <th className="p-4">Details</th>
                             <th className="p-4">Contact</th>
                             <th className="p-4">Fiscal Code</th>
@@ -108,26 +142,50 @@ const PatientList = () => {
                     </thead>
                     <tbody className="divide-y divide-gray-100 text-sm">
                         {filteredPatients.map((patient) => (
-                            <tr key={patient.id} className="hover:bg-blue-50 transition">
-                                <td className="p-4 font-bold text-gray-800 flex items-center gap-3">
-                                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                            <tr key={patient.id} className={`border-b transition duration-200 ${
+                                !patient.is_active ? 'bg-gray-100 text-gray-400' : 'hover:bg-gray-50'
+                            }`}>
+                                <td className="p-4 font-bold flex items-center gap-3">
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                                        patient.is_active ? 'bg-blue-100 text-blue-600' : 'bg-gray-300 text-gray-500'
+                                    }`}>
                                         <User className="w-4 h-4" />
                                     </div>
-                                    {patient.first_name} {patient.last_name}
+                                    <span className={!patient.is_active ? "line-through decoration-gray-400" : "text-gray-800"}>
+                                        {patient.first_name} {patient.last_name}
+                                    </span>
                                 </td>
-                                <td className="p-4 text-gray-500">
+                                <td className="p-4">
+                                    {patient.is_active ? (
+                                        <span className="flex items-center gap-1 text-green-600 font-bold text-xs bg-green-50 px-2 py-1 rounded-full w-fit">
+                                            <CheckCircle className="w-3 h-3" /> Active
+                                        </span>
+                                    ) : (
+                                        <span className="flex items-center gap-1 text-gray-500 font-bold text-xs bg-gray-200 px-2 py-1 rounded-full w-fit">
+                                            <XCircle className="w-3 h-3" /> Inactive
+                                        </span>
+                                    )}
+                                </td>
+                                <td className="p-4">
                                     Age: {patient.age} • {patient.gender}
                                 </td>
-                                <td className="p-4 text-gray-500 space-y-1">
+                                <td className="p-4 space-y-1">
                                     <div className="flex items-center gap-2"><Phone className="w-3 h-3"/> {patient.phone_number || "-"}</div>
                                     <div className="flex items-center gap-2"><Mail className="w-3 h-3"/> {patient.email || "-"}</div>
                                 </td>
-                                <td className="p-4 text-gray-500 font-mono bg-gray-50 rounded px-2">
-                                    {patient.fiscal_code}
+                                <td className="p-4 font-mono text-xs">
+                                    {patient.tax_id}
                                 </td>
-                                <td className="p-4">
-                                    <button onClick={() => handleEdit(patient)} className="text-blue-600 hover:text-blue-800">
+                                <td className="p-4 flex gap-3">
+                                    <button onClick={() => handleEdit(patient)} className="text-blue-600 hover:text-blue-800" title="Edit">
                                         <Pencil className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                        onClick={() => handleToggleStatus(patient)}
+                                        className={patient.is_active ? "text-red-500 hover:text-red-700" : "text-green-500 hover:text-green-700"}
+                                        title={patient.is_active ? "Change Active Status" : "Change Inactive Status"}
+                                    >
+                                        <Power className="w-4 h-4" />
                                     </button>
                                 </td>
                             </tr>
@@ -156,8 +214,8 @@ const PatientList = () => {
                         </select>
                     </div>
 
-                    <input name="fiscal_code" placeholder="Fiscal Code (Tax ID)" required
-                        value={formData.fiscal_code} onChange={e => setFormData({...formData, fiscal_code: e.target.value})} className="border p-2 rounded w-full font-mono uppercase" />
+                    <input name="tax_id" placeholder="Fiscal Code (Tax ID)" required
+                        value={formData.tax_id} onChange={e => setFormData({...formData, fiscal_code: e.target.value})} className="border p-2 rounded w-full font-mono uppercase" />
                     <input name="email" type="email" placeholder="Email Address"
                         value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="border p-2 rounded w-full" />
                     <input name="phone_number" placeholder="Phone Number"
@@ -167,6 +225,7 @@ const PatientList = () => {
                         <Save className="w-4 h-4" />
                         {selectedPatientId ? "Update Record" : "Save Record"}
                     </button>
+
                 </form>
             </Modal>
         </div>

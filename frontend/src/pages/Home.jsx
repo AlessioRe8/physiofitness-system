@@ -3,17 +3,19 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import {
     Phone, Mail, MapPin, Clock,
-    Activity, Heart, Stethoscope, UserCheck,
-    ArrowRight, CalendarCheck
+    Activity, Heart, Stethoscope,
+    ArrowRight, CalendarCheck, User, LogIn
 } from "lucide-react";
 
 const Home = () => {
     const { user } = useContext(AuthContext);
 
+    const isPatient = user?.role?.toUpperCase() === 'PATIENT';
+
     return (
         <div className="min-h-screen bg-white font-sans text-gray-800">
 
-            {/* 1. TOP BAR (Medical Style) */}
+            {/* 1. TOP BAR */}
             <div className="bg-blue-900 text-white text-sm py-2 px-6">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <div className="flex space-x-6">
@@ -29,31 +31,45 @@ const Home = () => {
             {/* 2. MAIN NAVIGATION */}
             <nav className="sticky top-0 bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                    <div className="flex items-center space-x-2 text-blue-700">
+                    <Link to="/" className="flex items-center space-x-2 text-blue-700">
                         <Activity className="w-8 h-8" />
                         <span className="text-2xl font-bold tracking-tight">PhysioFitness<span className="text-gray-400">.it</span></span>
-                    </div>
+                    </Link>
 
                     <div className="hidden md:flex space-x-8 font-medium text-gray-600">
                         <a href="#services" className="hover:text-blue-600 transition">Services</a>
-                        <a href="#doctors" className="hover:text-blue-600 transition">Our Team</a>
-                        <a href="#about" className="hover:text-blue-600 transition">About Clinic</a>
+                        <Link to="/about" className="hover:text-blue-600 transition">About us</Link>
                     </div>
 
                     <div className="flex items-center gap-4">
                         {user ? (
-                            <Link to="/dashboard" className="text-blue-700 font-bold hover:underline">
-                                Staff Portal
-                            </Link>
+                            <>
+                                {isPatient ? (
+                                    <>
+                                        <Link to="/profile" className="text-blue-700 font-bold hover:underline flex items-center gap-2">
+                                            <User className="w-4 h-4" /> My Profile
+                                        </Link>
+                                        <Link to="/profile" className="bg-blue-600 text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-lg flex items-center gap-2">
+                                            <CalendarCheck className="w-5 h-5" />
+                                            Book Visit
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <Link to="/dashboard" className="text-blue-700 font-bold hover:underline flex items-center gap-2">
+                                        <Activity className="w-4 h-4" /> Staff Portal
+                                    </Link>
+                                )}
+                            </>
                         ) : (
-                            <Link to="/login" className="text-gray-500 hover:text-blue-600 font-medium text-sm">
-                                Staff Login
-                            </Link>
+                            <>
+                                <Link to="/login" className="text-gray-500 hover:text-blue-600 font-medium text-sm flex items-center gap-1">
+                                    <LogIn className="w-4 h-4" /> Login
+                                </Link>
+                                <Link to="/register" className="bg-blue-600 text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-lg flex items-center gap-2">
+                                    Sign Up
+                                </Link>
+                            </>
                         )}
-                        <button className="bg-blue-600 text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-lg flex items-center gap-2">
-                            <CalendarCheck className="w-5 h-5" />
-                            Book Online
-                        </button>
                     </div>
                 </div>
             </nav>
@@ -74,12 +90,19 @@ const Home = () => {
                             We specialize in sports recovery, post-surgery rehab, and chronic pain management.
                         </p>
                         <div className="flex gap-4 pt-4">
-                            <button className="px-8 py-4 bg-blue-600 text-white rounded-lg text-lg font-bold hover:bg-blue-700 shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1">
-                                Request Appointment
-                            </button>
-                            <button className="px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-lg text-lg font-bold hover:bg-gray-50 transition">
+                            {user && !isPatient ? (
+                                <Link to="/dashboard" className="px-8 py-4 bg-blue-600 text-white rounded-lg text-lg font-bold hover:bg-blue-700 shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1">
+                                    Go to Dashboard
+                                </Link>
+                            ) : (
+                                <Link to={user ? "/profile" : "/register"} className="px-8 py-4 bg-blue-600 text-white rounded-lg text-lg font-bold hover:bg-blue-700 shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1">
+                                    Request Appointment
+                                </Link>
+                            )}
+
+                            <a href="#services" className="px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-lg text-lg font-bold hover:bg-gray-50 transition">
                                 View Services
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div className="relative h-96 bg-blue-200 rounded-3xl overflow-hidden shadow-2xl">
@@ -91,7 +114,7 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* 4. SERVICES GRID (Like Paideia) */}
+            {/* 4. SERVICES GRID */}
             <div id="services" className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16">
@@ -105,23 +128,26 @@ const Home = () => {
                         <ServiceCard
                             icon={Stethoscope}
                             title="Orthopedic Rehab"
-                            desc="Post-surgical recovery for ACL, meniscus, and joint replacements using cutting-edge robotics."
+                            desc="Post-surgical recovery for ACL, meniscus, and joint replacements."
+                            link="/service/rehab"
                         />
                         <ServiceCard
                             icon={Heart}
                             title="Sports Medicine"
-                            desc="Performance optimization and injury prevention for professional and amateur athletes."
+                            desc="Performance optimization and injury prevention for athletes."
+                            link="/service/sport"
                         />
                         <ServiceCard
                             icon={Activity}
                             title="Manual Therapy"
-                            desc="Hands-on techniques including mobilization and manipulation to reduce pain and increase range of motion."
+                            desc="Hands-on techniques including mobilization and manipulation."
+                            link="/service/massage"
                         />
                     </div>
                 </div>
             </div>
 
-            {/* 5. CTA SECTION (Like PhysioClinic) */}
+            {/* 5. CTA SECTION */}
             <div className="bg-blue-900 text-white py-20">
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <h2 className="text-3xl font-bold mb-6">Ready to start your recovery?</h2>
@@ -129,9 +155,12 @@ const Home = () => {
                         Our AI-powered booking system finds the earliest slot for you.
                         No waiting lists, no hassle.
                     </p>
-                    <button className="bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition shadow-lg">
-                        Book Your Visit Now
-                    </button>
+                    {/* Only show "Book Now" here for Patients or Guests */}
+                    {(isPatient || !user) && (
+                        <Link to={user ? "/profile" : "/register"} className="bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition shadow-lg inline-block">
+                            Book Your Visit Now
+                        </Link>
+                    )}
                 </div>
             </div>
 
@@ -148,7 +177,7 @@ const Home = () => {
                     <div>
                         <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Patients</h4>
                         <ul className="space-y-2">
-                            <li><a href="#" className="hover:text-white">Book Appointment</a></li>
+                            <li><a href="/profile" className="hover:text-white">Book Appointment</a></li>
                             <li><a href="#" className="hover:text-white">Insurance Info</a></li>
                             <li><a href="#" className="hover:text-white">Second Opinion</a></li>
                         </ul>
@@ -156,7 +185,7 @@ const Home = () => {
                     <div>
                         <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Contact</h4>
                         <ul className="space-y-2">
-                            <li className="flex items-center gap-2"><MapPin className="w-4 h-4"/> Via Roma 10, Milan</li>
+                            <li className="flex items-center gap-2"><MapPin className="w-4 h-4"/> Via XYZ, Camerino 62032 (MC)</li>
                             <li className="flex items-center gap-2"><Phone className="w-4 h-4"/> +39 06 1234 5678</li>
                         </ul>
                     </div>
@@ -169,24 +198,26 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-gray-800 text-center">
-                    &copy; 2025 PhysioFitness Systems. All rights reserved.
+                    &copy; 2025 PhysioFitness System. All rights reserved.
                 </div>
             </footer>
         </div>
     );
 };
 
-const ServiceCard = ({ icon: Icon, title, desc }) => (
-    <div className="bg-gray-50 p-8 rounded-2xl hover:bg-white hover:shadow-xl transition duration-300 border border-transparent hover:border-gray-100 group">
+// Service Card Component
+const ServiceCard = ({ icon: Icon, title, desc, link }) => (
+    <div className="bg-gray-50 p-8 rounded-2xl hover:bg-white hover:shadow-xl transition duration-300 border border-transparent hover:border-gray-100 group flex flex-col h-full">
         <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
             <Icon className="w-7 h-7" />
         </div>
         <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
-        <p className="text-gray-500 leading-relaxed">{desc}</p>
-        <div className="mt-6 flex items-center text-blue-600 font-semibold group-hover:gap-2 transition-all cursor-pointer">
+        <p className="text-gray-500 leading-relaxed mb-6 flex-1">{desc}</p>
+
+        <Link to={link} className="flex items-center text-blue-600 font-semibold group-hover:gap-2 transition-all cursor-pointer mt-auto">
             <span>Learn more</span>
             <ArrowRight className="w-4 h-4 ml-1" />
-        </div>
+        </Link>
     </div>
 );
 

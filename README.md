@@ -85,3 +85,17 @@ npm run dev
 ```
 ---
 This project is developed for academic purposes.
+
+#### Notifications and Reminders
+The system is implemented with Celery to send email notifications and reminders to users, based on their role/job.
+To run (in development environment), it’s important to first use the Celery Worker
+```bash 
+celery -A clinic backend worker -l info -P gevent
+```
+that will take care
+of sending confirmation emails and reminders for the appointments.
+Then, the system will need Celery Beat 
+```bash
+celery -A clinic backend beat -l info)
+ ```
+which will silently trigger the tasks if they satifsy the requirements.

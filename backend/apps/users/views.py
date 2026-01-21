@@ -1,5 +1,10 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status, viewsets
 from .models import User
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from django.core.mail import send_mail
+from django.conf import settings
+from django.utils.crypto import get_random_string
 from .serializers import UserSerializer, UserRegisterSerializer, MyTokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -44,3 +49,47 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            return [permissions.IsAuthenticated()]
+
+        return [permissions.IsAdminUser()]
+
+    @action(detail=True, methods=['post'], url_path='reset-password')
+    def reset_password(self, request, pk=None):
+        user = self.get_object()
+
+        new_password = get_random_string(length=12)
+
+        user.set_password(new_password)
+        user.save()
+
+        subject = f'Password Reset for {settings.SITE_NAME}'
+        message = (
+            f"Hello {user.first_name},\n\n"
+            f"An administrator has reset your password.\n"
+            f"Your new password is: {new_password}\n\n"
+            f"Please log in and change it immediately."
+        )
+
+        try:
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=False,
+            )
+            return Response({'status': 'New password sent to user email.'})
+        except Exception as e:
+            print("Email Error:", e)
+            return Response(
+                {'warning': 'Password changed, but email failed.', 'temp_password': new_password},
+                status=status.HTTP_200_OK
+            )

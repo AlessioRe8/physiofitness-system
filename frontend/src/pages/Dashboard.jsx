@@ -83,7 +83,7 @@ const Dashboard = () => {
                 <StatCard title="Appointments Today" value={stats.today_appointments} icon={CalendarIcon} color="#10B981" />
                 {isAdmin && (
                     <>
-                        <StatCard title="Monthly Revenue" value={`€${stats.monthly_revenue}`} icon={DollarSign} color="#F59E0B" />
+                        <StatCard title="Monthly Revenue (Coming soon)" value={`€${stats.monthly_revenue}`} icon={DollarSign} color="#F59E0B" />
                         <StatCard title="Pending Invoices" value={stats.pending_invoices} icon={FileText} color="#EF4444" />
                     </>
                 )}

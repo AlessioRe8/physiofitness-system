@@ -5,59 +5,17 @@ from apps.patients.models import Patient
 
 class UserSerializer(serializers.ModelSerializer):
     """
-    Serializer for the User model.
-    Used for retrieving and updating user information (e.g., /api/users/me/).
+    Used for retrieving and updating user information.
+    We allow editing names, role, and is_active status.
     """
     class Meta:
         model = User
-        fields = (
-            'id', 
-            'email', 
-            'first_name', 
-            'last_name', 
-            'role',
-            'is_active'
-        )
-        read_only_fields = fields
-
+        fields = ('id', 'email', 'first_name', 'last_name', 'role', 'is_active')
+        read_only_fields = ('id', 'email')
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-    """
-    Serializer for creating a new user (registration).
-    Includes password validation.
-    """
-    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
-    password2 = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
-
-    class Meta:
-        model = User
-        fields = (
-            'email', 
-            'first_name', 
-            'last_name', 
-            'password', 
-            'password2'
-        )
-
-    def validate(self, attrs):
-        if attrs['password'] != attrs['password2']:
-            raise serializers.ValidationError({"password": "Password fields didn't match."})
-        return attrs
-
-    def create(self, validated_data):
-        user = User.objects.create_user(
-            email=validated_data['email'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            password=validated_data['password'],
-            role='PATIENT'
-        )
-        return user
-
-
-class UserRegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
-    password2 = serializers.CharField(write_only=True)
+    password = serializers.CharField(write_only=True, style={'input_type': 'password'})
+    password2 = serializers.CharField(write_only=True, style={'input_type': 'password'})
 
     class Meta:
         model = User
@@ -78,15 +36,9 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         )
 
         try:
-            existing_patient = Patient.objects.get(
-                email=validated_data['email'],
-                user__isnull=True
-            )
-
+            existing_patient = Patient.objects.get(email=validated_data['email'], user__isnull=True)
             existing_patient.user = user
             existing_patient.save()
-            print(f"--- SUCCESS: Linked User {user.email} to existing Patient Profile ---")
-
         except Patient.DoesNotExist:
             Patient.objects.create(
                 user=user,
@@ -94,19 +46,14 @@ class UserRegisterSerializer(serializers.ModelSerializer):
                 last_name=user.last_name,
                 email=user.email
             )
-            print(f"--- INFO: New Patient profile created for {user.email} ---")
-
         return user
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
-
         token = super().get_token(user)
-
         token['role'] = user.role
         token['email'] = user.email
         token['first_name'] = user.first_name
         token['last_name'] = user.last_name
-
         return token

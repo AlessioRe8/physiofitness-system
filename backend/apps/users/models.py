@@ -51,7 +51,7 @@ class User(AbstractUser, TimeStampedModel):
     class Role(models.TextChoices):
         ADMIN = 'ADMIN', 'Administrator'
         PHYSIO = 'PHYSIO', 'Physiotherapist'
-        RECEPTIONIST = 'RECEPTION', 'Receptionist'
+        RECEPTIONIST = 'RECEPTIONIST', 'Receptionist'
         PATIENT = 'PATIENT', 'Patient'
 
     role = models.CharField(

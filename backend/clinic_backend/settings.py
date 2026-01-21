@@ -64,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'apps.core.middleware.AuditLogMiddleware',
 ]
 
 #This is for Swagger.
@@ -169,7 +170,6 @@ CELERY_TIMEZONE = "UTC"
 # This prints emails to the terminal instead of sending them.
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# This is for the appointment reminder.
 from celery.schedules import crontab
 
 CELERY_BEAT_SCHEDULE = {
@@ -183,3 +183,5 @@ CELERY_BEAT_SCHEDULE = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
+
+SITE_NAME = "PhysioFitness Clinic"
