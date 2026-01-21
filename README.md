@@ -130,6 +130,11 @@ To quickly set up the system with users, patients, and appointments for testing:
     ```bash
        python manage.py setup_demo
     ```
-
+    
+    Login Credentials for already created users:
+    - Admin: admin@test.com / password123
+    - Physiotherapist: physio@test.com / password123
+    - Receptionist: reception@test.com / password123
+    - Patient: patient1@test.com / password123
 ---
 This project is developed for academic purposes.
