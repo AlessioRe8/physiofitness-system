@@ -83,8 +83,6 @@ cd frontend
 npm install
 npm run dev
 ```
----
-This project is developed for academic purposes.
 
 #### Notifications and Reminders
 The system is implemented with Celery to send email notifications and reminders to users, based on their role/job.
@@ -99,3 +97,39 @@ Then, the system will need Celery Beat
 celery -A clinic backend beat -l info)
  ```
 which will silently trigger the tasks if they satifsy the requirements.
+
+## Quick Start (Demo Data with PostgreSQL)
+
+To quickly set up the system with users, patients, and appointments for testing:
+
+1.  **Install Dependencies:**
+    ```bash
+    cd backend
+    pip install -r requirements.txt
+    ```
+
+2.  **Database Configuration:**
+    Ensure PostgreSQL is running on your machine, so create a new database in it:
+    ```sql
+    CREATE DATABASE physiofitness_db;
+    ```
+    Then, in the `/backend` folder create a `.env` file (copy from `.env.example`)
+    and fill in your PostgreSQL credentials.
+    Run migrations after:
+    ```bash
+       python manage.py migrate
+    ```
+    Then create your own superuser account: 
+
+    ```bash
+       python manage.py createsuperuser
+    ```
+    You can now run the application normally (with `python manage.py runserver`)
+3. **Load Demo Data:**
+    If you want to populate the system with mock patients and appointments after creating your admin:
+    ```bash
+       python manage.py setup_demo
+    ```
+
+---
+This project is developed for academic purposes.

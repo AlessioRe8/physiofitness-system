@@ -133,10 +133,9 @@ const PatientList = () => {
                     <thead className="bg-gray-100 text-gray-600 uppercase text-xs font-bold">
                         <tr>
                             <th className="p-4">Name</th>
-                            <th className="p-4">Status</th>
                             <th className="p-4">Details</th>
                             <th className="p-4">Contact</th>
-                            <th className="p-4">Fiscal Code</th>
+                            <th className="p-4">Tax ID</th>
                             <th className="p-4">Action</th>
                         </tr>
                     </thead>
@@ -156,17 +155,6 @@ const PatientList = () => {
                                     </span>
                                 </td>
                                 <td className="p-4">
-                                    {patient.is_active ? (
-                                        <span className="flex items-center gap-1 text-green-600 font-bold text-xs bg-green-50 px-2 py-1 rounded-full w-fit">
-                                            <CheckCircle className="w-3 h-3" /> Active
-                                        </span>
-                                    ) : (
-                                        <span className="flex items-center gap-1 text-gray-500 font-bold text-xs bg-gray-200 px-2 py-1 rounded-full w-fit">
-                                            <XCircle className="w-3 h-3" /> Inactive
-                                        </span>
-                                    )}
-                                </td>
-                                <td className="p-4">
                                     Age: {patient.age} • {patient.gender}
                                 </td>
                                 <td className="p-4 space-y-1">
@@ -174,7 +162,7 @@ const PatientList = () => {
                                     <div className="flex items-center gap-2"><Mail className="w-3 h-3"/> {patient.email || "-"}</div>
                                 </td>
                                 <td className="p-4 font-mono text-xs">
-                                    {patient.tax_id}
+                                    {patient.fiscal_code}
                                 </td>
                                 <td className="p-4 flex gap-3">
                                     <button onClick={() => handleEdit(patient)} className="text-blue-600 hover:text-blue-800" title="Edit">
@@ -215,7 +203,7 @@ const PatientList = () => {
                     </div>
 
                     <input name="tax_id" placeholder="Fiscal Code (Tax ID)" required
-                        value={formData.tax_id} onChange={e => setFormData({...formData, fiscal_code: e.target.value})} className="border p-2 rounded w-full font-mono uppercase" />
+                        value={formData.tax_id} onChange={e => setFormData({...formData, tax_id: e.target.value})} className="border p-2 rounded w-full font-mono uppercase" />
                     <input name="email" type="email" placeholder="Email Address"
                         value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="border p-2 rounded w-full" />
                     <input name="phone_number" placeholder="Phone Number"

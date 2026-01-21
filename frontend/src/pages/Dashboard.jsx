@@ -126,6 +126,7 @@ const Dashboard = () => {
                                     strokeWidth={3}
                                     dot={{ r: 4, strokeWidth: 2, stroke: '#fff', fill: '#3B82F6' }}
                                     activeDot={{ r: 6, strokeWidth: 0 }}
+                                    name="Expected Appointments"
                                 />
                             </LineChart>
                         </ResponsiveContainer>
