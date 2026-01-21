@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="Refining frontend, added command for creating mock data. Added database migration files">
+    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="fixed README.md">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/etl_test.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/test_connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/test_auth.py" afterDir="false" />
@@ -238,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769024154373</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="fixed README.md">
+      <option name="closed" value="true" />
+      <created>1769024410369</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1769024410369</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -276,13 +285,13 @@
     <MESSAGE value="initial sketch of the frontend" />
     <MESSAGE value="added backend features, enhanced frontend UI, written README.md, added requirements.txt," />
     <MESSAGE value="added util" />
-    <MESSAGE value="fixed README.md" />
     <MESSAGE value="fixed protection issues, refactored repo" />
     <MESSAGE value="frontend initial commit" />
     <MESSAGE value="removed ./frontend/README.md" />
     <MESSAGE value="Fixed frontend (staff portal, patient interface)" />
     <MESSAGE value="Added mock e-invoicing and tele-consultation options" />
     <MESSAGE value="Refining frontend, added command for creating mock data. Added database migration files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refining frontend, added command for creating mock data. Added database migration files" />
+    <MESSAGE value="fixed README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed README.md" />
   </component>
 </project>
