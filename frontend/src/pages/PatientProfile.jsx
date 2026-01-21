@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import api from "../api/axios";
 import AuthContext from "../context/AuthContext";
-import { User, Calendar, Clock, ArrowRight, Pencil, Save, X } from "lucide-react";
+import { User, Calendar, Clock, ArrowRight, Pencil, Save, X, Video, FileText, Download } from "lucide-react";
 import Modal from "../components/Modal";
 import { useNavigate } from "react-router-dom";
 
@@ -83,6 +83,17 @@ const PatientProfile = () => {
         }
     };
 
+    const handleJoinTeleconsult = (appt) => {
+        const roomUrl = `https://meet.jit.si/PhysioFitness-${appt.id}`;
+        if(window.confirm("Enter our secure Tele-Consultation room?")) {
+            window.open(roomUrl, "_blank");
+        }
+    };
+
+    const handleDownloadInvoice = (appt) => {
+        alert(`Downloading Electronic Invoice (XML/PDF) for Appointment #${appt.id}...\n\n(Integration with SDI/Agenzia delle Entrate)`);
+    };
+
     const handleBookMock = (e) => {
         e.preventDefault();
         alert("Booking request received!\n\nWe will contact you at " + user.email + " shortly.");
@@ -118,16 +129,15 @@ const PatientProfile = () => {
                         </div>
                     )}
 
-                    <div className="flex flex-col md:flex-row items-start gap-6">
+                    <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
                         <div className="bg-blue-100 p-4 rounded-full flex-shrink-0">
                             <User className="w-12 h-12 text-blue-600" />
                         </div>
 
-                        <div className="flex-1 w-full">
+                        <div className="flex-1 w-full text-center md:text-left">
                             <h1 className="text-2xl font-bold text-gray-800">{user.first_name} {user.last_name}</h1>
                             <p className="text-gray-500 mb-4">{user.email}</p>
 
-                            {/* --- EDITABLE FIELDS SECTION --- */}
                             <div className="grid md:grid-cols-3 gap-6 mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
 
                                 <div>
@@ -180,7 +190,7 @@ const PatientProfile = () => {
                         </div>
                     </div>
 
-                    <div className="mt-6 flex justify-end border-t pt-4">
+                    <div className="mt-6 flex justify-center md:justify-end border-t pt-4">
                         <button
                             onClick={() => setIsBookingOpen(true)}
                             className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-blue-700 shadow-lg transition flex items-center gap-2"
@@ -203,18 +213,18 @@ const PatientProfile = () => {
                         ) : (
                             appointments.map(appt => {
                                 const passed = isPast(appt.end_time);
+                                const canJoinVideo = !passed && appt.status === 'CONFIRMED';
+
                                 return (
                                     <div key={appt.id} className={`p-5 rounded-xl shadow-sm border transition-all ${
-                                        passed
-                                            ? 'bg-gray-50 border-gray-100 opacity-70 grayscale'
-                                            : 'bg-white border-gray-200 hover:shadow-md'
+                                        passed ? 'bg-gray-50 border-gray-100 opacity-70' : 'bg-white border-gray-200'
                                     }`}>
-                                        <div className="flex justify-between items-center">
+                                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                                             <div>
                                                 <h3 className={`font-bold text-lg ${passed ? 'text-gray-600' : 'text-gray-800'}`}>
                                                     {appt.title || "Physio Session"}
                                                 </h3>
-                                                <div className="flex items-center gap-4 text-sm text-gray-500 mt-2">
+                                                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mt-2">
                                                     <span className="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded">
                                                         <Clock className="w-3 h-3" />
                                                         {new Date(appt.start_time).toLocaleString()}
@@ -224,20 +234,35 @@ const PatientProfile = () => {
                                                     )}
                                                 </div>
                                             </div>
-                                            <div>
-                                                {passed ? (
-                                                     <span className="px-3 py-1 rounded-full text-xs font-bold bg-gray-200 text-gray-500 border border-gray-300">
-                                                        COMPLETED
-                                                     </span>
-                                                ) : (
-                                                    <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
-                                                        appt.status === 'CONFIRMED'
-                                                            ? 'bg-green-50 text-green-700 border-green-200'
-                                                            : 'bg-yellow-50 text-yellow-700 border-yellow-200'
-                                                    }`}>
-                                                        {appt.status}
-                                                    </span>
+
+                                            <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                                                {canJoinVideo && (
+                                                    <button
+                                                        onClick={() => handleJoinTeleconsult(appt)}
+                                                        className="flex items-center gap-1 bg-violet-600 text-white px-3 py-1.5 rounded-lg text-sm font-bold hover:bg-violet-700 transition shadow-sm flex-1 md:flex-none justify-center"
+                                                    >
+                                                        <Video className="w-4 h-4" /> Tele-Visit
+                                                    </button>
                                                 )}
+
+                                                {passed && (
+                                                    <button
+                                                        onClick={() => handleDownloadInvoice(appt)}
+                                                        className="flex items-center gap-1 border border-gray-300 text-gray-600 px-3 py-1.5 rounded-lg text-sm font-bold hover:bg-gray-100 transition flex-1 md:flex-none justify-center"
+                                                    >
+                                                        <Download className="w-4 h-4" /> Invoice
+                                                    </button>
+                                                )}
+
+                                                <span className={`px-3 py-1.5 rounded-full text-xs font-bold text-center ${
+                                                    passed
+                                                        ? 'bg-gray-200 text-gray-500 border border-gray-300'
+                                                        : appt.status === 'CONFIRMED'
+                                                            ? 'bg-green-50 text-green-700 border border-green-200'
+                                                            : 'bg-yellow-50 text-yellow-700 border border-yellow-200'
+                                                }`}>
+                                                    {passed ? "COMPLETED" : appt.status}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -249,27 +274,19 @@ const PatientProfile = () => {
 
                 <Modal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} title="Request Appointment">
                     <form onSubmit={handleBookMock} className="space-y-4">
-                        <div className="p-3 bg-blue-50 text-blue-700 text-xs rounded-lg">
-                            We will confirm via email: <b>{user.email}</b>
-                        </div>
+                        <div className="p-3 bg-blue-50 text-blue-700 text-xs rounded-lg">Confirmation sent to: <b>{user.email}</b></div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Service</label>
-                            <select className="border p-2 rounded-lg w-full bg-white" required
-                                value={bookingData.service_id}
-                                onChange={e => setBookingData({...bookingData, service_id: e.target.value})}>
+                            <select className="border p-2 rounded-lg w-full bg-white" required value={bookingData.service_id} onChange={e => setBookingData({...bookingData, service_id: e.target.value})}>
                                 <option value="">Select Treatment...</option>
                                 {services.map(s => <option key={s.id} value={s.id}>{s.name} ({s.duration_minutes} min)</option>)}
                             </select>
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Time</label>
-                            <input type="datetime-local" className="border p-2 rounded-lg w-full" required
-                                 value={bookingData.start_time}
-                                 onChange={e => setBookingData({...bookingData, start_time: e.target.value})} />
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Time</label>
+                            <input type="datetime-local" className="border p-2 rounded-lg w-full" required value={bookingData.start_time} onChange={e => setBookingData({...bookingData, start_time: e.target.value})} />
                         </div>
-                        <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition">
-                            Send Request
-                        </button>
+                        <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700">Send Request</button>
                     </form>
                 </Modal>
             </div>

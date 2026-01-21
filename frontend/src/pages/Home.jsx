@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import {
     Phone, Mail, MapPin, Clock,
     Activity, Heart, Stethoscope,
-    ArrowRight, CalendarCheck, User, LogIn
+    ArrowRight, CalendarCheck, User, LogIn,
+    Menu, X, UserPlus, LogOut, LayoutDashboard
 } from "lucide-react";
 
 const Home = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logoutUser } = useContext(AuthContext);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const isPatient = user?.role?.toUpperCase() === 'PATIENT';
 
@@ -16,7 +18,7 @@ const Home = () => {
         <div className="min-h-screen bg-white font-sans text-gray-800">
 
             {/* 1. TOP BAR */}
-            <div className="bg-blue-900 text-white text-sm py-2 px-6">
+            <div className="hidden sm:block bg-blue-900 text-white text-sm py-2 px-6">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <div className="flex space-x-6">
                         <span className="flex items-center gap-2"><Phone className="w-4 h-4" /> +39 06 1234 5678</span>
@@ -41,7 +43,7 @@ const Home = () => {
                         <Link to="/about" className="hover:text-blue-600 transition">About us</Link>
                     </div>
 
-                    <div className="flex items-center gap-4">
+                    <div className="hidden md:flex flex items-center gap-4">
                         {user ? (
                             <>
                                 {isPatient ? (
@@ -71,7 +73,61 @@ const Home = () => {
                             </>
                         )}
                     </div>
+
+                    <button
+                        className="md:hidden text-gray-600"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                        {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+                    </button>
+
                 </div>
+
+                {/* MOBILE MENU DROPDOWN */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden bg-white border-t border-gray-100 p-4 space-y-4 shadow-lg absolute w-full left-0">
+                        <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-600 font-medium border-b border-gray-50">Services</a>
+                        <a href="/about" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-gray-600 font-medium border-b border-gray-50">About Clinic</a>
+
+                        {user ? (
+                                    <>
+                                        {isPatient ? (
+                                            <>
+                                                <Link to="/profile" className="flex items-center gap-3 text-blue-700 font-bold px-2 py-2 hover:bg-gray-50 rounded">
+                                                    <User className="w-5 h-5" /> My Profile
+                                                </Link>
+                                                <Link to="/profile" className="flex items-center justify-center gap-2 w-full bg-blue-600 text-white py-3 rounded-lg font-bold shadow-md">
+                                                    <CalendarCheck className="w-5 h-5" /> Book New Visit
+                                                </Link>
+                                            </>
+                                        ) : (
+                                            <Link to="/dashboard" className="flex items-center gap-3 text-blue-700 font-bold px-2 py-2 hover:bg-gray-50 rounded">
+                                                <LayoutDashboard className="w-5 h-5" /> Enter Staff Portal
+                                            </Link>
+                                        )}
+
+                                        <button
+                                            onClick={() => {
+                                                logoutUser();
+                                                setIsMobileMenuOpen(false);
+                                            }}
+                                            className="flex items-center gap-3 w-full text-left text-red-600 font-bold px-2 py-2 hover:bg-red-50 rounded transition mt-2 border-t border-gray-100"
+                                        >
+                                            <LogOut className="w-5 h-5" /> Logout
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link to="/login" className="flex items-center gap-3 text-gray-600 font-medium px-2 py-2 hover:bg-gray-50 rounded">
+                                            <LogIn className="w-5 h-5" /> Log In
+                                        </Link>
+                                        <Link to="/register" className="flex items-center justify-center gap-2 w-full bg-blue-600 text-white py-3 rounded-lg font-bold shadow-md">
+                                            <UserPlus className="w-5 h-5" /> Sign Up & Book
+                                        </Link>
+                                    </>
+                                )}
+                    </div>
+                )}
             </nav>
 
             {/* 3. HERO SECTION */}
