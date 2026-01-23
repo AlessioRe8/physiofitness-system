@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="fixed README.md">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/PatientLayout.jsx" afterDir="false" />
+    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="fixed mobile UI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/react.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/PatientProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/PatientProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/ServiceInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ServiceInfo.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/etl_test.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/test_connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/test_auth.py" afterDir="false" />
@@ -270,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769025071095</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fixed mobile UI">
+      <option name="closed" value="true" />
+      <created>1769176086391</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1769176086391</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -284,7 +286,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -315,6 +317,7 @@
     <MESSAGE value="Added mock e-invoicing and tele-consultation options" />
     <MESSAGE value="Refining frontend, added command for creating mock data. Added database migration files" />
     <MESSAGE value="fixed README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed README.md" />
+    <MESSAGE value="fixed mobile UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed mobile UI" />
   </component>
 </project>
