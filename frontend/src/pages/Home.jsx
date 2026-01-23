@@ -7,6 +7,7 @@ import {
     ArrowRight, CalendarCheck, User, LogIn,
     Menu, X, UserPlus, LogOut, LayoutDashboard
 } from "lucide-react";
+import physiotherapy from "../assets/physiotherapy.jpg";
 
 const Home = () => {
     const { user, logoutUser } = useContext(AuthContext);
@@ -161,12 +162,27 @@ const Home = () => {
                             </a>
                         </div>
                     </div>
-                    <div className="relative h-96 bg-blue-200 rounded-3xl overflow-hidden shadow-2xl">
-                        <div className="absolute inset-0 bg-blue-600 opacity-10 pattern-grid-lg"></div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <Activity className="w-32 h-32 text-blue-600 opacity-50" />
+                    <div className="relative h-96 bg-gray-100 rounded-3xl overflow-hidden shadow-2xl group">
+                        <img
+                            src={physiotherapy}
+                            alt="PhysioFitness Clinic"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+
+                            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/20 to-transparent"></div>
+
+                            <div className="absolute bottom-0 left-0 p-6 md:p-8 text-white">
+                                <div className="flex items-center gap-2 text-blue-600 font-bold mb-2 text-xs uppercase tracking-wider">
+                                    <Activity className="w-4 h-4" /> Latest Technology
+                                </div>
+                                    <h3 className="text-2xl md:text-3xl font-bold leading-tight mb-2">
+                                        Everything you need in <br/> One Facility
+                                    </h3>
+                                    <p className="text-blue-100 max-w-[280px] md:max-w-xs text-sm leading-relaxed">
+                                        Experience recovery in our modern clinic equipped with the latest rehabilitation technology.
+                                    </p>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
 
