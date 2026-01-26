@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="fixed mobile UI">
+    <list default="true" id="f9bc8dfc-e949-4c31-979e-6de6ec2177fb" name="Changes" comment="uploaded documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../tbdm-project/iot-etl/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/etl_test.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/test_connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../tbdm-project/iot-etl/tests/test_auth.py" afterDir="false" />
     </list>
@@ -23,7 +25,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../tbdm-project/iot-etl" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -280,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769176552969</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="uploaded documentation">
+      <option name="closed" value="true" />
+      <created>1769199493322</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1769199493322</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -326,6 +336,7 @@
     <MESSAGE value="Refining frontend, added command for creating mock data. Added database migration files" />
     <MESSAGE value="fixed README.md" />
     <MESSAGE value="fixed mobile UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed mobile UI" />
+    <MESSAGE value="uploaded documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="uploaded documentation" />
   </component>
 </project>
